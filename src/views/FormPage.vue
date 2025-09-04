@@ -24,7 +24,9 @@ const snackbarMessage = ref("");
 
 
 const submitForm = async () => {
-  if (!form.value.validate()) return;
+
+  const { valid } = await form.value.validate();
+  if (!valid) return;
 
   try {
     await addDoc(collection(db, "interns"), {
@@ -36,6 +38,8 @@ const submitForm = async () => {
 
     snackbarMessage.value = "Intern added successfully!";
     snackbar.value = true;
+
+    form.value.reset();
 
 
     name.value = "";
@@ -94,7 +98,7 @@ const submitForm = async () => {
 
       </v-form>
 
-      <v-snackbar v-model="snackbar" color="green" timeout="3000">
+      <v-snackbar v-model="snackbar" color="green">
         {{ snackbarMessage }}
       </v-snackbar>
     </v-card>
