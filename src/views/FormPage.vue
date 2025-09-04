@@ -5,7 +5,6 @@ import { collection, addDoc } from "firebase/firestore";
 
 const valid = ref(false);
 const form = ref(null);
-
 const name = ref("");
 const email = ref("");
 const role = ref("");
@@ -13,17 +12,17 @@ const dateJoined = ref("");
 
 const roles = ["Developer", "Designer", "Tester"];
 
-// Validation Rules
+
 const rules = {
   required: (v) => !!v || "This field is required",
-  email: (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+  email: (v) => /.+@.+\..+/.test(v) || "e-mail must be valid",
 };
 
-// Snackbar
+
 const snackbar = ref(false);
 const snackbarMessage = ref("");
 
-// Submit Function
+
 const submitForm = async () => {
   if (!form.value.validate()) return;
 
@@ -38,7 +37,7 @@ const submitForm = async () => {
     snackbarMessage.value = "Intern added successfully!";
     snackbar.value = true;
 
-    // Clear form
+
     name.value = "";
     email.value = "";
     role.value = "";
@@ -51,12 +50,14 @@ const submitForm = async () => {
 </script>
 
 <template>
+
   <v-container>
-    <v-card class="pa-6" elevation="4">
-      <v-card-title>Intern Registration Form</v-card-title>
+    <v-card class="pa-10" elevation="5">
+      <v-card-title class="custom-title">Intern Registration Form</v-card-title>
 
       <v-form ref="form" v-model="valid" @submit.prevent="submitForm">
-        <!-- Full Name -->
+
+
         <v-text-field
             v-model="name"
             label="Full Name"
@@ -64,7 +65,6 @@ const submitForm = async () => {
             required
         />
 
-        <!-- Email -->
         <v-text-field
             v-model="email"
             label="Email"
@@ -72,7 +72,6 @@ const submitForm = async () => {
             required
         />
 
-        <!-- Role -->
         <v-select
             v-model="role"
             :items="roles"
@@ -81,18 +80,20 @@ const submitForm = async () => {
             required
         />
 
-        <!-- Date Joined -->
         <v-text-field
             v-model="dateJoined"
             label="Date Joined"
             type="date"
         />
 
-        <!-- Submit -->
-        <v-btn type="submit" color="primary" class="mt-4">Submit</v-btn>
+
+        <div class="d-flex justify-end mt-6">
+          <v-btn type="submit" color="primary">Submit</v-btn>
+        </div>
+
+
       </v-form>
 
-      <!-- Snackbar -->
       <v-snackbar v-model="snackbar" color="green" timeout="3000">
         {{ snackbarMessage }}
       </v-snackbar>
@@ -100,4 +101,15 @@ const submitForm = async () => {
   </v-container>
 </template>
 
+
+
+<style scoped>
+.custom-title {
+  background-color: #BBDEFB;
+  color: #040505;
+  font-weight: bold;
+}
+
+
+</style>
 
