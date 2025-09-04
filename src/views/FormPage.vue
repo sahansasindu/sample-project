@@ -92,7 +92,7 @@ const submitForm = async () => {
 
 
         <div class="d-flex justify-end mt-6">
-          <v-btn type="submit" color="primary">Submit</v-btn>
+          <v-btn type="submit" color="primary" class="btn">Submit</v-btn>
         </div>
 
 
@@ -113,7 +113,13 @@ const submitForm = async () => {
   color: #040505;
   font-weight: bold;
 }
-
+.btn{
+  padding: 12px 150px;
+  font-size: 16px;
+  bottom: 0;
+  margin: 10px;
+  margin-left: 300px;
+}
 
 </style>
 
